@@ -1,4 +1,4 @@
-// Below are my dependencies; I'm unhealthily co-dependent.
+// The dependencies.
 
 const express = require("express");
 const fs = require("fs");
@@ -10,10 +10,10 @@ const database = require("./db/db");
 var app = express();
 var PORT = process.env.PORT || 3001;
 
-// Gotta link to my assets!
+//  link to assets!
 app.use(express.static("public"));
 
-// This sets up data parsing-- Express will interpret it/format data as JSON.
+// This sets up data parsing.
 // This is required for API calls!
 
 app.use(express.urlencoded({ extended: true }));
@@ -71,15 +71,6 @@ app
     // Gives back the response, which is the user's new note.
     res.json(newNote);
   });
-
-//=================================================================
-// Delete a note based on an ID (cannot be location in array,
-// the location will change if you splice things out)
-// This route is dependent on ID of note.
-//      1. Find note by id via a loop
-//      2. Splice note out of array of notes.
-//      3. Re-write db.json, just without that newly deleted note.
-//=================================================================
 
 app.delete("/api/notes/:id", function (req, res) {
   let jsonFilePath = path.join(__dirname, "/db/db.json");
